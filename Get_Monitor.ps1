@@ -126,7 +126,7 @@
                 if ($PSCmdlet.ShouldProcess($Computer, "Get monitor connection")) {
                     Write-Verbose "Retrieving monitors for ${Computer}"
                     $Monitors = Get-CimInstance -ComputerName $Computer -Namespace root/wmi -ClassName WmiMonitorID -Verbose:$false
-                    
+
                     if (-not $Monitors) {
                         Write-Verbose "No monitors found for ${Computer}"
                         continue
@@ -135,7 +135,7 @@
                     foreach ($Monitor in $Monitors) {
                         try {
                             $MonitorConnection = Get-CimInstance -ComputerName $Computer -Namespace root/wmi -ClassName WmiMonitorConnectionParams -Verbose:$false | Where-Object { $_.InstanceName -like $Monitor.InstanceName }
-                        } 
+                        }
                         catch {
                             Write-Error "Failed to retrieve connection parameters for monitor on ${Computer}: $_"
                             continue
@@ -158,7 +158,7 @@
                         } | Write-Output
                     }
                 }
-            } 
+            }
             catch {
                 Write-Error "Failed to retrieve monitor information for ${Computer}: $_"
             }

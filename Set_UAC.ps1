@@ -62,12 +62,12 @@ function Set-UAC {
                 Set-ItemProperty -Path $regPath -Name $regName -Value 0 -Force
             }
             if ($Restart) {
-                Write-Host "Restarting the system now..." -ForegroundColor Cyan
+                Write-Verbose -Message "Restarting the system now..." -ForegroundColor Cyan
                 Start-Sleep -Seconds 5
                 Restart-Computer -Force
             }
             else {
-                Write-Host "Please restart your computer for the changes to take effect." -ForegroundColor Cyan
+                Write-Verbose "Please restart your computer for the changes to take effect." -ForegroundColor Cyan
             }
         }
     }
