@@ -1,48 +1,48 @@
 ﻿function Get-SystemInventory {
     <#
     .SYNOPSIS
-    Retrieves system inventory, including hardware, disk space, memory, and network details from local or remote computers.
+        Retrieves system inventory, including hardware, disk space, memory, and network details from local or remote computers.
 
     .DESCRIPTION
-    This function collects system inventory data such as service tag, model, processor, memory, disk space (for all local disks), operating system, and MAC addresses.
-    Users can choose to retrieve only specific details using parameters (`-IncludeDisk`, `-IncludeMemory`, `-IncludeNetwork`, or `-IncludeAll`).
+        This function collects system inventory data such as service tag, model, processor, memory, disk space (for all local disks), operating system, and MAC addresses.
+        Users can choose to retrieve only specific details using parameters (`-IncludeDisk`, `-IncludeMemory`, `-IncludeNetwork`, or `-IncludeAll`).
 
     .PARAMETER ComputerName
-    The name(s) of the computer(s) to query. Defaults to the local machine if not specified.
+        The name(s) of the computer(s) to query. Defaults to the local machine if not specified.
 
     .PARAMETER IncludeDisk
-    Retrieves disk space information for **all local disks**, including total size and free space.
+        Retrieves disk space information for **all local disks**, including total size and free space.
 
     .PARAMETER IncludeMemory
-    Retrieves memory details, including free, available, used, and total memory.
+        Retrieves memory details, including free, available, used, and total memory.
 
     .PARAMETER IncludeNetwork
-    Retrieves active network adapter details, including MAC address, IP address, and connection speed.
+        Retrieves active network adapter details, including MAC address, IP address, and connection speed.
 
     .PARAMETER IncludeAll
-    Retrieves all available inventory information (equivalent to selecting `-IncludeDisk`, `-IncludeMemory`, and `-IncludeNetwork`).
+        Retrieves all available inventory information (equivalent to selecting `-IncludeDisk`, `-IncludeMemory`, and `-IncludeNetwork`).
 
     .PARAMETER OutputFormat
-    Specifies the format of the output. Valid options:
-    - `Object` (default) - Returns a PowerShell object.
-    - `CSV` - Saves output as a CSV file.
-    - `JSON` - Saves output as a JSON file.
+        Specifies the format of the output. Valid options:
+        - `Object` (default) - Returns a PowerShell object.
+        - `CSV` - Saves output as a CSV file.
+        - `JSON` - Saves output as a JSON file.
 
     .EXAMPLE
-    PS C:\> Get-SystemInventory -ComputerName localhost
-    Retrieves hardware inventory for the local computer.
+        PS C:\> Get-SystemInventory -ComputerName localhost
+        Retrieves hardware inventory for the local computer.
 
     .EXAMPLE
-    PS C:\> Get-SystemInventory -ComputerName Server1, Server2 -IncludeDisk
-    Retrieves inventory and disk space details for multiple computers.
+        PS C:\> Get-SystemInventory -ComputerName Server1, Server2 -IncludeDisk
+        Retrieves inventory and disk space details for multiple computers.
 
     .EXAMPLE
-    PS C:\> Get-SystemInventory -ComputerName Workstation1 -IncludeAll -OutputFormat CSV
-    Retrieves full inventory for Workstation1 and saves it as a CSV file.
+        PS C:\> Get-SystemInventory -ComputerName Workstation1 -IncludeAll -OutputFormat CSV
+        Retrieves full inventory for Workstation1 and saves it as a CSV file.
 
     .NOTES
-    - Only **local fixed disks** (DriveType=3) are included when retrieving disk space.
-    - Requires administrative privileges on remote machines to retrieve system information.
+        - Only **local fixed disks** (DriveType=3) are included when retrieving disk space.
+        - Requires administrative privileges on remote machines to retrieve system information.
     #>
 
     [CmdletBinding(SupportsShouldProcess)]

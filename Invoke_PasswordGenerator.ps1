@@ -1,31 +1,31 @@
 function Invoke-PasswordGenerator {
     <#
     .SYNOPSIS
-    Generates a random password.
+        Generates a random password.
 
     .DESCRIPTION
-    This function generates a random password of a specified length, with the option to include special characters.
+        This function generates a random password of a specified length, with the option to include special characters.
 
     .PARAMETER Length
-    Specifies the length of the password. Default is 15. The minimum allowed length is 6, and the maximum is 128.
+        Specifies the length of the password. Default is 15. The minimum allowed length is 6, and the maximum is 128.
 
     .PARAMETER IncludeSpecialChars
-    If specified, includes special characters in the password.
+        If specified, includes special characters in the password.
 
     .OUTPUTS
-    System.String
+        System.String
 
     .EXAMPLE
-    PS C:\> Invoke-PasswordGenerator
-    Generates a 15-character password using alphanumeric characters.
+        PS C:\> Invoke-PasswordGenerator
+        Generates a 15-character password using alphanumeric characters.
 
     .EXAMPLE
-    PS C:\> Invoke-PasswordGenerator -Length 20 -IncludeSpecialChars
-    Generates a 20-character password including special characters.
+        PS C:\> Invoke-PasswordGenerator -Length 20 -IncludeSpecialChars
+        Generates a 20-character password including special characters.
 
     .NOTES
-    - Uses Get-Random for character selection.
-    - Not intended for cryptographic security.
+        - Uses Get-Random for character selection.
+        - Not intended for cryptographic security.
     #>
 
     [CmdletBinding()]
