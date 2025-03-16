@@ -1,40 +1,40 @@
 ﻿#Requires -RunAsAdministrator
 function Set-UAC {
     <#
-.SYNOPSIS
-    Manages User Account Control (UAC) settings on Windows systems by modifying the EnableLUA registry key. This function allows enabling or disabling UAC and optionally restarting the system to apply changes.
+    .SYNOPSIS
+        Manages User Account Control (UAC) settings on Windows systems by modifying the EnableLUA registry key. This function allows enabling or disabling UAC and optionally restarting the system to apply changes.
 
-.DESCRIPTION
-    The Set-UAC function provides a straightforward way to adjust UAC settings, which control user prompts for administrative privileges. By default, the function requires administrative privileges to execute due to the sensitive nature of modifying system-wide security settings.
+    .DESCRIPTION
+        The Set-UAC function provides a straightforward way to adjust UAC settings, which control user prompts for administrative privileges. By default, the function requires administrative privileges to execute due to the sensitive nature of modifying system-wide security settings.
 
-.PARAMETER Enable
-    A switch parameter that enables User Account Control. When specified, the function sets the registry key value to 1, ensuring UAC is active on the system.
+    .PARAMETER Enable
+        A switch parameter that enables User Account Control. When specified, the function sets the registry key value to 1, ensuring UAC is active on the system.
 
-.PARAMETER Disable
-    A switch parameter that disables User Account Control. This option sets the registry key value to 0, turning off UAC prompts for administrative actions.
+    .PARAMETER Disable
+        A switch parameter that disables User Account Control. This option sets the registry key value to 0, turning off UAC prompts for administrative actions.
 
-.PARAMETER Restart
-    An optional switch parameter that triggers an immediate system restart after making changes. If not used, the function informs the user to manually restart the computer for the changes to take effect.
+    .PARAMETER Restart
+        An optional switch parameter that triggers an immediate system restart after making changes. If not used, the function informs the user to manually restart the computer for the changes to take effect.
 
-.INPUTS
-    None. This function does not accept pipeline input.
+    .INPUTS
+        None. This function does not accept pipeline input.
 
-.OUTPUTS
-    None. The function does not return any output; it solely modifies registry settings and may initiate a system restart.
+    .OUTPUTS
+        None. The function does not return any output; it solely modifies registry settings and may initiate a system restart.
 
-.EXAMPLE
-    # Enable UAC without restarting
-    Set-UAC -Enable
+    .EXAMPLE
+        # Enable UAC without restarting
+        Set-UAC -Enable
 
-    # Disable UAC and restart the computer
-    Set-UAC -Disable -Restart
+        # Disable UAC and restart the computer
+        Set-UAC -Disable -Restart
 
-.NOTES
-    - This function must be run with administrative privileges.
-    - Modifying UAC settings can affect system security. Disabling UAC may expose the system to potential vulnerabilities by removing user prompts for administrative actions.
-    - Always back up your system before making changes to critical registry keys.
-    - Changes take effect upon a system restart.
-#>
+    .NOTES
+        - This function must be run with administrative privileges.
+        - Modifying UAC settings can affect system security. Disabling UAC may expose the system to potential vulnerabilities by removing user prompts for administrative actions.
+        - Always back up your system before making changes to critical registry keys.
+        - Changes take effect upon a system restart.
+    #>
     [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory, ParameterSetName = "Enable")]

@@ -1,45 +1,45 @@
-﻿<#
-.SYNOPSIS
-    Retrieves the username of the currently logged-in user on one or more computers.
+﻿function Get-LoggedOnUser {
+    <#
+    .SYNOPSIS
+        Retrieves the username of the currently logged-in user on one or more computers.
 
-.DESCRIPTION
-    Uses CIM to remotely query which user is currently signed into the specified computer.
-    The function can retrieve domain and local accounts logged in via RDP or locally.
+    .DESCRIPTION
+        Uses CIM to remotely query which user is currently signed into the specified computer.
+        The function can retrieve domain and local accounts logged in via RDP or locally.
 
-.PARAMETER ComputerName
-    The name(s) of the computer(s) to query. Defaults to the local machine if not specified.
+    .PARAMETER ComputerName
+        The name(s) of the computer(s) to query. Defaults to the local machine if not specified.
 
-.PARAMETER IncludeConsoleUsers
-    If specified, retrieves users logged into the interactive console session.
+    .PARAMETER IncludeConsoleUsers
+        If specified, retrieves users logged into the interactive console session.
 
-.INPUTS
-    Accepts pipeline input for the ComputerName parameter.
+    .INPUTS
+        Accepts pipeline input for the ComputerName parameter.
 
-.OUTPUTS
-    System.Management.Automation.PSCustomObject[]
+    .OUTPUTS
+        System.Management.Automation.PSCustomObject[]
 
-.EXAMPLE
-    PS C:\> Get-LoggedOnUser -ComputerName localhost
+    .EXAMPLE
+        PS C:\> Get-LoggedOnUser -ComputerName localhost
 
-    ComputerName   LoggedOnUser
-    ------------   ------------
-    localhost      DOMAIN\username
+        ComputerName   LoggedOnUser
+        ------------   ------------
+        localhost      DOMAIN\username
 
-.EXAMPLE
-    PS C:\> "PC1", "PC2" | Get-LoggedOnUser
+    .EXAMPLE
+        PS C:\> "PC1", "PC2" | Get-LoggedOnUser
 
-    Retrieves the logged-in user for multiple computers using pipeline input.
+        Retrieves the logged-in user for multiple computers using pipeline input.
 
-.EXAMPLE
-    PS C:\> Get-LoggedOnUser -ComputerName "Server01" -IncludeConsoleUsers
+    .EXAMPLE
+        PS C:\> Get-LoggedOnUser -ComputerName "Server01" -IncludeConsoleUsers
 
-    Retrieves both primary and console users logged into "Server01".
+        Retrieves both primary and console users logged into "Server01".
 
-.NOTES
-    - Requires administrative privileges on remote machines to retrieve user session details.
-    - If querying a remote machine, ensure that WinRM is enabled.
-#>
-function Get-LoggedOnUser {
+    .NOTES
+        - Requires administrative privileges on remote machines to retrieve user session details.
+        - If querying a remote machine, ensure that WinRM is enabled.
+    #>
     [CmdletBinding(SupportsShouldProcess)]
     [OutputType([System.Management.Automation.PSCustomObject[]])]
     param (
